@@ -1,4 +1,4 @@
-# Nova AI - Intelligent Assistant Web Application
+# EMOVA AI - Intelligent Assistant Web Application
 
 A polished, responsive AI assistant web application built with HTML5, CSS3, vanilla JavaScript, Node.js/Express, and Supabase. Users can register, sign in, ask questions, and receive genuine AI-generated answers in a secure, feature-rich chat interface.
 

@@ -1,4 +1,4 @@
-class NovaAI {
+class EMOVA {
     constructor() {
         this.currentPage = 'landing';
         this.currentUser = null;
@@ -132,17 +132,30 @@ class NovaAI {
             return;
         }
 
-        const clone = template.content.cloneNode(true);
+        // Clear previous page
         app.innerHTML = '';
+
+        // Clone and append new content
+        const clone = template.content.cloneNode(true);
         app.appendChild(clone);
 
+        // Update current page tracker
         this.currentPage = pageName;
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+        
+        // Re-attach event listeners
         this.attachEventListeners();
 
+        // Page-specific setup
         if (pageName === 'landing') {
             this.setupPasswordToggles();
         } else if (pageName === 'chat') {
-            this.setupChatPage();
+            // Give page time to render before setup
+            setTimeout(() => this.setupChatPage(), 0);
+        } else if (pageName === 'signin' || pageName === 'signup') {
+            this.setupPasswordToggles();
         }
     }
 
@@ -290,8 +303,9 @@ class NovaAI {
             const data = await response.json();
 
             if (response.ok) {
-                this.showFormSuccess(form, data.message || 'Account created successfully! Check your email.');
-                setTimeout(() => this.showSignIn(), 2000);
+                this.showFormSuccess(form, 'Account created successfully! Redirecting to sign in...');
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                this.showSignIn();
             } else {
                 this.showFormError(form, data.error || 'Sign up failed. Please try again.');
             }
@@ -336,7 +350,12 @@ class NovaAI {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok && data.session) {
+                // Verify we have all required session data
+                if (!data.session.access_token) {
+                    throw new Error('No access token received from server');
+                }
+                
                 this.currentUser = data.user;
                 this.accessToken = data.session.access_token;
                 this.refreshToken = data.session.refresh_token;
@@ -344,6 +363,10 @@ class NovaAI {
                 localStorage.setItem('accessToken', this.accessToken);
                 localStorage.setItem('refreshToken', this.refreshToken);
 
+                // Add a small delay to ensure localStorage is written
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                // Now show chat
                 this.showChat();
             } else {
                 this.showFormError(form, data.error || 'Sign in failed. Please try again.');
@@ -883,4 +906,4 @@ class NovaAI {
 }
 
 // Initialize app
-const app = new NovaAI();
+const app = new EMOVA();

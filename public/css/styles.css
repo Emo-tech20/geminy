@@ -6,21 +6,22 @@
 }
 
 :root {
-    --color-bg-primary: #0a0e27;
-    --color-bg-secondary: #16213e;
-    --color-bg-tertiary: #0f3460;
-    --color-text-primary: #e8eef7;
-    --color-text-secondary: #a8afc7;
-    --color-text-muted: #6c7599;
-    --color-accent: #ff6b35;
-    --color-accent-hover: #ff8555;
-    --color-border: #1a2855;
+    --color-bg-primary: #0f1419;
+    --color-bg-secondary: #1a1f2e;
+    --color-bg-tertiary: #242c3d;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b3b3b3;
+    --color-text-muted: #808080;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #a78bfa;
+    --color-accent-dark: #7c3aed;
+    --color-border: #2a3345;
     --color-error: #ef4444;
     --color-success: #22c55e;
-    --color-input-bg: #1a2855;
-    --color-input-border: #2a3f5f;
+    --color-input-bg: #1a1f2e;
+    --color-input-border: #2a3345;
     
-    --font-family-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     --font-family-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     
     --spacing-xs: 0.25rem;
@@ -34,30 +35,33 @@
     --border-radius-md: 0.5rem;
     --border-radius-lg: 0.75rem;
     --border-radius-xl: 1rem;
+    --border-radius-2xl: 1.5rem;
     
-    --transition-fast: 150ms ease-in-out;
-    --transition-base: 200ms ease-in-out;
-    --transition-slow: 300ms ease-in-out;
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
 }
 
 html.light-theme {
     --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f5f5f5;
-    --color-bg-tertiary: #efefef;
-    --color-text-primary: #1f1f1f;
-    --color-text-secondary: #4a4a4a;
-    --color-text-muted: #767676;
-    --color-accent: #ff6b35;
-    --color-accent-hover: #ff8555;
-    --color-border: #e0e0e0;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-tertiary: #f0f1f3;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #666666;
+    --color-text-muted: #999999;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #a78bfa;
+    --color-accent-dark: #7c3aed;
+    --color-border: #e5e7eb;
     --color-error: #ef4444;
     --color-success: #22c55e;
-    --color-input-bg: #f9f9f9;
-    --color-input-border: #e0e0e0;
+    --color-input-bg: #ffffff;
+    --color-input-border: #e5e7eb;
 }
 
 html {
@@ -135,17 +139,20 @@ p {
 .btn-primary {
     background-color: var(--color-accent);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.25);
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .btn-primary:hover:not(:disabled) {
     background-color: var(--color-accent-hover);
-    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(139, 92, 246, 0.35);
+    transform: translateY(-1px);
 }
 
 .btn-primary:active:not(:disabled) {
     transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.25);
 }
 
 .btn-secondary {
@@ -210,8 +217,8 @@ input[type="password"],
 textarea {
     width: 100%;
     padding: var(--spacing-md);
-    border: 1px solid var(--color-input-border);
-    border-radius: var(--border-radius-md);
+    border: 1.5px solid var(--color-input-border);
+    border-radius: var(--border-radius-lg);
     background-color: var(--color-input-bg);
     color: var(--color-text-primary);
     font-family: var(--font-family-body);
@@ -225,7 +232,7 @@ input[type="password"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 input[type="checkbox"] {
@@ -487,11 +494,12 @@ input:not([type="password"]) ~ .password-toggle .eye-icon {
 .auth-card {
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-xl);
+    border-radius: var(--border-radius-2xl);
     padding: var(--spacing-2xl);
     width: 100%;
     max-width: 420px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .auth-header {
@@ -505,9 +513,10 @@ input:not([type="password"]) ~ .password-toggle .eye-icon {
     justify-content: center;
     width: 60px;
     height: 60px;
-    background-color: rgba(255, 107, 53, 0.1);
-    border-radius: var(--border-radius-lg);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border-radius: var(--border-radius-xl);
     margin: 0 auto var(--spacing-lg);
+    border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 .auth-header .logo svg {
@@ -631,18 +640,19 @@ html.light-theme .theme-toggle .moon-icon {
     justify-content: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background-color: rgba(255, 107, 53, 0.1);
-    border: 1px solid var(--color-border);
-    color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    border: none;
+    color: white;
     border-radius: var(--border-radius-lg);
     cursor: pointer;
     font-weight: 500;
     transition: all var(--transition-base);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
 }
 
 .new-chat-btn:hover {
-    background-color: rgba(255, 107, 53, 0.2);
-    border-color: var(--color-accent);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
 }
 
 .conversations-list {
@@ -673,8 +683,10 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .conversation-item.active {
-    background-color: rgba(255, 107, 53, 0.2);
+    background-color: rgba(139, 92, 246, 0.15);
     color: var(--color-accent);
+    border-left: 3px solid var(--color-accent);
+    padding-left: calc(var(--spacing-md) - 3px);
 }
 
 .conversation-actions {
@@ -742,16 +754,17 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background-color: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
     color: var(--color-text-primary);
     cursor: pointer;
     transition: all var(--transition-base);
 }
 
 .account-menu-toggle:hover {
-    background-color: var(--color-bg-tertiary);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border-color: var(--color-accent);
 }
 
 .user-email {
@@ -769,11 +782,11 @@ html.light-theme .theme-toggle .moon-icon {
     left: var(--spacing-md);
     right: var(--spacing-md);
     background-color: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border);
+    border: 1.5px solid var(--color-border);
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     margin-bottom: var(--spacing-sm);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
 
@@ -846,7 +859,7 @@ html.light-theme .theme-toggle .moon-icon {
 
 .suggested-prompt {
     padding: var(--spacing-md);
-    background-color: var(--color-bg-secondary);
+    background-color: rgba(139, 92, 246, 0.08);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
     color: var(--color-text-secondary);
@@ -854,12 +867,14 @@ html.light-theme .theme-toggle .moon-icon {
     transition: all var(--transition-base);
     text-align: center;
     font-size: 0.95rem;
+    backdrop-filter: blur(10px);
 }
 
 .suggested-prompt:hover {
-    background-color: var(--color-bg-tertiary);
+    background-color: rgba(139, 92, 246, 0.15);
     border-color: var(--color-accent);
     color: var(--color-accent);
+    transform: translateY(-2px);
 }
 
 .messages-list {
@@ -909,13 +924,21 @@ html.light-theme .theme-toggle .moon-icon {
 .message-content {
     background-color: var(--color-bg-secondary);
     padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-xl);
     border: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-base);
 }
 
 .message.user .message-content {
-    background-color: var(--color-bg-tertiary);
-    border-color: var(--color-border);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    border-color: var(--color-accent);
+    color: white;
+}
+
+.message.assistant .message-content:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-accent);
 }
 
 .message-text {
@@ -942,7 +965,7 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     gap: var(--spacing-xs);
     padding: var(--spacing-xs) var(--spacing-sm);
-    background-color: rgba(255, 107, 53, 0.1);
+    background-color: rgba(139, 92, 246, 0.1);
     border: none;
     border-radius: var(--border-radius-sm);
     color: var(--color-accent);
@@ -952,7 +975,7 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .message-action-btn:hover {
-    background-color: rgba(255, 107, 53, 0.2);
+    background-color: rgba(139, 92, 246, 0.2);
 }
 
 .message-action-btn svg {
@@ -985,7 +1008,7 @@ html.light-theme .theme-toggle .moon-icon {
 .chat-composer {
     padding: var(--spacing-lg) var(--spacing-2xl);
     border-top: 1px solid var(--color-border);
-    background-color: var(--color-bg-primary);
+    background: linear-gradient(to top, var(--color-bg-primary), rgba(139, 92, 246, 0.02));
 }
 
 .composer-form {
@@ -1001,6 +1024,15 @@ html.light-theme .theme-toggle .moon-icon {
     max-height: 150px;
     padding: var(--spacing-md) var(--spacing-lg) !important;
     font-size: 1rem;
+    border-radius: var(--border-radius-xl);
+    background-color: var(--color-input-bg);
+    border: 1.5px solid var(--color-input-border);
+    transition: all var(--transition-base);
+}
+
+.composer-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 .composer-button {
@@ -1008,7 +1040,7 @@ html.light-theme .theme-toggle .moon-icon {
     width: 44px;
     height: 44px;
     padding: 0;
-    background-color: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
     border: none;
     border-radius: var(--border-radius-lg);
     color: white;
@@ -1017,10 +1049,16 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     justify-content: center;
     transition: all var(--transition-base);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
 }
 
 .composer-button:hover {
-    background-color: var(--color-accent-hover);
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.35);
+    transform: translateY(-1px);
+}
+
+.composer-button:active {
+    transform: translateY(0);
 }
 
 .composer-button:disabled {
