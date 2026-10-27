@@ -1,0 +1,14 @@
+.env
+.env.local
+.env.*.local
+.git
+.gitignore
+node_modules
+npm-debug.log*
+*.log
+test/
+spec.md
+database-setup.sql
+VERCEL_SETUP.md
+README.md
+geminy/

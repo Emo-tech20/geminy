@@ -252,3 +252,216 @@ curl http://localhost:3000/api/health
 # Production health check
 curl https://your-app.vercel.app/api/health
 ```
+
+
+---
+
+## Deploying to Vercel
+
+### Option A: Using Vercel Dashboard (Recommended for First-Time Setup)
+
+1. **Go to Vercel Dashboard**
+   - Visit https://vercel.com/dashboard
+   - Click "Add New..." → "Project"
+
+2. **Import from GitHub**
+   - Select "Import Git Repository"
+   - Paste: `https://github.com/Emo-tech20/geminy`
+   - Click "Continue"
+
+3. **Configure Project**
+   - **Project Name**: `geminy` (or your preferred name)
+   - **Framework**: Leave blank (Vercel auto-detects Express)
+   - Click "Continue"
+
+4. **Add Environment Variables**
+   - You'll see "Configure Environment Variables"
+   - Add each variable:
+     - `CLIENT_URL` 
+     - `NODE_ENV` → `production`
+     - `SUPABASE_URL`
+     - `SUPABASE_ANON_KEY`
+     - `SUPABASE_SERVICE_ROLE_KEY`
+     - `SUPABASE_JWKS_URL`
+     - `GEMINI_API_KEY`
+   - Click "Deploy"
+
+5. **Wait for Deployment**
+   - Vercel will build and deploy
+   - You'll see a preview URL like: `https://geminy-abc123.vercel.app`
+
+6. **Update CLIENT_URL**
+   - After deployment succeeds:
+   - Go to Settings → Environment Variables
+   - Update `CLIENT_URL` to your actual deployment URL
+   - Redeploy (click "Redeploy" or push a new commit)
+
+### Option B: Using Vercel CLI
+
+```bash
+# If not logged in:
+vercel login
+
+# Deploy to production:
+vercel --prod
+
+# Deploy to preview (default):
+vercel
+```
+
+### Option C: Connect GitHub for Auto-Deploy
+
+1. **Create `.vercelignore`** (already created)
+2. **Push to GitHub** (already done)
+3. **Go to Vercel → Add Project → Connect Git**
+4. **Select Repository**: `Emo-tech20/geminy`
+5. **Configure Environment Variables**
+6. **Click Deploy**
+7. **Every push to main will auto-deploy**
+
+---
+
+## After Deployment
+
+### 1. Update CLIENT_URL
+
+After your first successful deployment:
+
+1. Note your Vercel URL (e.g., `https://geminy-xyz.vercel.app`)
+2. Go to Vercel Dashboard → Project Settings
+3. Environment Variables
+4. Update `CLIENT_URL` to your Vercel URL
+5. Click "Save" and redeploy
+
+### 2. Test Deployment
+
+Visit your deployed app:
+```
+https://your-app.vercel.app/api/health
+```
+
+Expected response:
+```json
+{
+  "status": "ok",
+  "supabaseConfigured": true,
+  "aiConfigured": true,
+  "aiProvider": "Google Gemini",
+  "timestamp": "..."
+}
+```
+
+### 3. Test Features
+
+- Visit `https://your-app.vercel.app`
+- Sign up with email
+- Sign in
+- Send a chat message
+- Verify response from Gemini
+
+---
+
+## Troubleshooting Deployment
+
+### Build Fails with "Cannot find module"
+
+**Solution**:
+```bash
+# Ensure all dependencies are in package.json
+npm install package-name --save
+
+# Commit and push
+git add package.json package-lock.json
+git commit -m "Add missing dependency"
+git push origin main
+```
+
+### App deploys but shows "Cannot GET /"
+
+**Solution**:
+- Check that `/public/index.html` exists
+- Verify `vercel.json` routes all traffic to `/api/index.js`
+- Check Vercel build logs for errors
+
+### "Supabase not configured" at `/api/health`
+
+**Solution**:
+- Go to Vercel Settings → Environment Variables
+- Verify all `SUPABASE_*` variables are set
+- Ensure no typos in variable names
+- Redeploy
+
+### "Gemini API not configured" at `/api/health`
+
+**Solution**:
+- Add `GEMINI_API_KEY` to Vercel Environment Variables
+- Ensure key is valid in Google AI Studio
+- Redeploy
+
+### CORS errors in browser console
+
+**Solution**:
+- Update `CLIENT_URL` in Vercel Environment Variables
+- Match it exactly to your app URL (including protocol and domain)
+- Redeploy
+
+### Deployment takes too long or times out
+
+**Solution**:
+- Check Vercel deployment logs
+- Ensure `node_modules` is in `.vercelignore`
+- Try redeploying
+
+---
+
+## Monitoring & Maintenance
+
+### View Logs
+
+**Production Logs:**
+```
+https://vercel.com/dashboard/[your-team]/geminy → Deployments → Select deployment → Logs
+```
+
+**Real-time Logs:**
+```bash
+vercel logs
+```
+
+### Environment Variables Management
+
+Update variables anytime in:
+- Vercel Dashboard → Project Settings → Environment Variables
+- Changes take effect on next deployment
+
+### Scale Configuration
+
+Default settings in `vercel.json`:
+- **Memory**: 1024 MB
+- **Timeout**: 30 seconds
+- **Regions**: Auto (Vercel chooses best region)
+
+To increase limits, edit `vercel.json`:
+```json
+{
+  "functions": {
+    "api/index.js": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
+}
+```
+
+---
+
+## Security Checklist
+
+- ✅ `.env` is in `.gitignore` (never committed)
+- ✅ `.vercelignore` excludes sensitive files
+- ✅ Environment variables stored in Vercel (not code)
+- ✅ `GEMINI_API_KEY` never exposed in frontend
+- ✅ `SUPABASE_SERVICE_ROLE_KEY` kept secret
+- ✅ CORS configured for your domain only
+- ✅ Rate limiting enabled in backend
+- ✅ Database RLS policies active
