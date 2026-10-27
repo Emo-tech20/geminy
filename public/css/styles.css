@@ -15,9 +15,12 @@
     --color-accent: #8b5cf6;
     --color-accent-hover: #a78bfa;
     --color-accent-dark: #7c3aed;
+    --color-accent-rgb: 139, 92, 246;
     --color-border: #2a3345;
     --color-error: #ef4444;
+    --color-error-rgb: 239, 68, 68;
     --color-success: #22c55e;
+    --color-success-rgb: 34, 197, 94;
     --color-input-bg: #1a1f2e;
     --color-input-border: #2a3345;
     
@@ -57,9 +60,12 @@ html.light-theme {
     --color-accent: #8b5cf6;
     --color-accent-hover: #a78bfa;
     --color-accent-dark: #7c3aed;
+    --color-accent-rgb: 139, 92, 246;
     --color-border: #e5e7eb;
     --color-error: #ef4444;
+    --color-error-rgb: 239, 68, 68;
     --color-success: #22c55e;
+    --color-success-rgb: 34, 197, 94;
     --color-input-bg: #ffffff;
     --color-input-border: #e5e7eb;
 }
@@ -139,20 +145,20 @@ p {
 .btn-primary {
     background-color: var(--color-accent);
     color: white;
-    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 8px 16px rgba(var(--color-accent-rgb), 0.25);
     font-weight: 500;
     letter-spacing: 0.3px;
 }
 
 .btn-primary:hover:not(:disabled) {
     background-color: var(--color-accent-hover);
-    box-shadow: 0 12px 24px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 12px 24px rgba(var(--color-accent-rgb), 0.35);
     transform: translateY(-1px);
 }
 
 .btn-primary:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 8px rgba(var(--color-accent-rgb), 0.25);
 }
 
 .btn-secondary {
@@ -232,7 +238,7 @@ input[type="password"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.1);
 }
 
 input[type="checkbox"] {
@@ -270,7 +276,7 @@ textarea {
 
 .form-error {
     padding: var(--spacing-md);
-    background-color: rgba(239, 68, 68, 0.1);
+    background-color: rgba(var(--color-error-rgb), 0.1);
     border-left: 3px solid var(--color-error);
     border-radius: var(--border-radius-md);
     color: var(--color-error);
@@ -280,7 +286,7 @@ textarea {
 
 .form-success {
     padding: var(--spacing-md);
-    background-color: rgba(34, 197, 94, 0.1);
+    background-color: rgba(var(--color-success-rgb), 0.1);
     border-left: 3px solid var(--color-success);
     border-radius: var(--border-radius-md);
     color: var(--color-success);
@@ -513,10 +519,10 @@ input:not([type="password"]) ~ .password-toggle .eye-icon {
     justify-content: center;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.2) 0%, rgba(var(--color-accent-rgb), 0.05) 100%);
     border-radius: var(--border-radius-xl);
     margin: 0 auto var(--spacing-lg);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.3);
 }
 
 .auth-header .logo svg {
@@ -647,11 +653,11 @@ html.light-theme .theme-toggle .moon-icon {
     cursor: pointer;
     font-weight: 500;
     transition: all var(--transition-base);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.25);
 }
 
 .new-chat-btn:hover {
-    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 8px 20px rgba(var(--color-accent-rgb), 0.4);
     transform: translateY(-1px);
 }
 
@@ -683,7 +689,7 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .conversation-item.active {
-    background-color: rgba(139, 92, 246, 0.15);
+    background-color: rgba(var(--color-accent-rgb), 0.15);
     color: var(--color-accent);
     border-left: 3px solid var(--color-accent);
     padding-left: calc(var(--spacing-md) - 3px);
@@ -715,7 +721,7 @@ html.light-theme .theme-toggle .moon-icon {
 
 .conversation-action-btn:hover {
     color: var(--color-error);
-    background-color: rgba(239, 68, 68, 0.1);
+    background-color: rgba(var(--color-error-rgb), 0.1);
 }
 
 .conversations-empty,
@@ -754,7 +760,7 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%);
+    background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.05) 0%, rgba(var(--color-accent-rgb), 0.02) 100%);
     border: 1.5px solid var(--color-border);
     border-radius: var(--border-radius-lg);
     color: var(--color-text-primary);
@@ -763,7 +769,7 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .account-menu-toggle:hover {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.1) 0%, rgba(var(--color-accent-rgb), 0.05) 100%);
     border-color: var(--color-accent);
 }
 
@@ -859,7 +865,7 @@ html.light-theme .theme-toggle .moon-icon {
 
 .suggested-prompt {
     padding: var(--spacing-md);
-    background-color: rgba(139, 92, 246, 0.08);
+    background-color: rgba(var(--color-accent-rgb), 0.08);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
     color: var(--color-text-secondary);
@@ -871,7 +877,7 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .suggested-prompt:hover {
-    background-color: rgba(139, 92, 246, 0.15);
+    background-color: rgba(var(--color-accent-rgb), 0.15);
     border-color: var(--color-accent);
     color: var(--color-accent);
     transform: translateY(-2px);
@@ -965,7 +971,7 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     gap: var(--spacing-xs);
     padding: var(--spacing-xs) var(--spacing-sm);
-    background-color: rgba(139, 92, 246, 0.1);
+    background-color: rgba(var(--color-accent-rgb), 0.1);
     border: none;
     border-radius: var(--border-radius-sm);
     color: var(--color-accent);
@@ -975,7 +981,7 @@ html.light-theme .theme-toggle .moon-icon {
 }
 
 .message-action-btn:hover {
-    background-color: rgba(139, 92, 246, 0.2);
+    background-color: rgba(var(--color-accent-rgb), 0.2);
 }
 
 .message-action-btn svg {
@@ -992,7 +998,7 @@ html.light-theme .theme-toggle .moon-icon {
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(255, 107, 53, 0.3);
+    border: 3px solid rgba(var(--color-accent-rgb), 0.3);
     border-top-color: var(--color-accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -1008,7 +1014,7 @@ html.light-theme .theme-toggle .moon-icon {
 .chat-composer {
     padding: var(--spacing-lg) var(--spacing-2xl);
     border-top: 1px solid var(--color-border);
-    background: linear-gradient(to top, var(--color-bg-primary), rgba(139, 92, 246, 0.02));
+    background: linear-gradient(to top, var(--color-bg-primary), rgba(var(--color-accent-rgb), 0.02));
 }
 
 .composer-form {
@@ -1032,7 +1038,7 @@ html.light-theme .theme-toggle .moon-icon {
 
 .composer-input:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.1);
 }
 
 .composer-button {
@@ -1049,11 +1055,11 @@ html.light-theme .theme-toggle .moon-icon {
     align-items: center;
     justify-content: center;
     transition: all var(--transition-base);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.25);
 }
 
 .composer-button:hover {
-    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 6px 16px rgba(var(--color-accent-rgb), 0.35);
     transform: translateY(-1px);
 }
 

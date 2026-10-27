@@ -18,8 +18,22 @@ class EMOVA {
     }
 
     setupTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+        // First check localStorage, then check system preference
+        let savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+            // Use system preference if no saved theme
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            savedTheme = prefersDark ? 'dark' : 'light';
+        }
         this.setTheme(savedTheme);
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                // Only apply system preference if user hasn't set explicit preference
+                this.setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
     }
 
     setTheme(theme) {
