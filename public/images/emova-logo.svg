@@ -1,0 +1,41 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sparkleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4ECDC4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E90FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sparkleGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6BCB77;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main sparkle shape - four-pointed star -->
+  <path d="M100,10 L130,80 L200,100 L130,120 L100,190 L70,120 L0,100 L70,80 Z" 
+        fill="url(#sparkleGradient1)" 
+        filter="url(#glow)"
+        opacity="0.95"/>
+  
+  <!-- Secondary sparkle layer for depth -->
+  <path d="M100,30 L120,80 L170,100 L120,120 L100,170 L80,120 L30,100 L80,80 Z" 
+        fill="url(#sparkleGradient2)" 
+        opacity="0.7"/>
+  
+  <!-- Center glow circle -->
+  <circle cx="100" cy="100" r="25" 
+          fill="#FFFFFF" 
+          opacity="0.3"
+          filter="url(#glow)"/>
+  
+  <!-- Accent points for extra sparkle -->
+  <circle cx="100" cy="100" r="8" fill="#FFFFFF" opacity="0.8"/>
+</svg>
