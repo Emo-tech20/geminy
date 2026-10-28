@@ -38,7 +38,22 @@ try {
 app.locals.supabase = supabase;
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      fontSrc: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+      connectSrc: ["'self'"],
+      frameSrc: ["'none'"],
+      formAction: ["'self'"],
+      baseUri: ["'self'"],
+      frameAncestors: ["'none'"]
+    }
+  }
+}));
 app.use(cors({
   origin: CLIENT_URL,
   credentials: true,

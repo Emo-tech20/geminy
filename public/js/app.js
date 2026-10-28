@@ -53,6 +53,61 @@ class EMOVA {
     }
 
     attachEventListeners() {
+        // Navigation actions using data attributes (with event delegation)
+        document.addEventListener('click', (e) => {
+            const action = e.target.closest('[data-action]')?.dataset.action;
+            
+            if (!action) return;
+            
+            // Prevent default for buttons
+            if (e.target.closest('button')) {
+                e.preventDefault();
+            }
+            
+            const btn = e.target.closest('[data-action]');
+            
+            switch (action) {
+                case 'show-signup':
+                    this.showSignUp();
+                    break;
+                case 'show-signin':
+                    this.showSignIn();
+                    break;
+                case 'show-landing':
+                    this.showLanding();
+                    break;
+                case 'show-forgot-password':
+                    this.showForgotPassword();
+                    break;
+                case 'create-new-chat':
+                    this.createNewChat();
+                    break;
+                case 'toggle-account-menu':
+                    this.toggleAccountMenu();
+                    break;
+                case 'sign-out':
+                    this.signOut();
+                    break;
+                case 'toggle-sidebar':
+                    this.toggleSidebar();
+                    break;
+                case 'insert-prompt':
+                    this.insertPrompt(btn.dataset.prompt);
+                    break;
+                case 'copy-message':
+                    this.copyMessage(btn.dataset.content);
+                    break;
+                case 'rename-conversation':
+                    e.stopPropagation();
+                    this.renameConversation(btn.dataset.conversationId);
+                    break;
+                case 'delete-conversation':
+                    e.stopPropagation();
+                    this.deleteConversation(btn.dataset.conversationId);
+                    break;
+            }
+        });
+
         // Auth forms
         const signupForm = document.getElementById('signup-form');
         if (signupForm) {
@@ -67,6 +122,18 @@ class EMOVA {
         const forgotPasswordForm = document.getElementById('forgot-password-form');
         if (forgotPasswordForm) {
             forgotPasswordForm.addEventListener('submit', (e) => this.handleForgotPassword(e));
+        }
+
+        // Composer form
+        const composerForm = document.querySelector('.composer-form');
+        if (composerForm) {
+            composerForm.addEventListener('submit', (e) => this.sendMessage(e));
+        }
+
+        // Composer input
+        const composerInput = document.querySelector('.composer-input');
+        if (composerInput) {
+            composerInput.addEventListener('keydown', (e) => this.handleComposerKeydown(e));
         }
 
         // Password toggles
@@ -84,38 +151,13 @@ class EMOVA {
             }
         });
 
-        // Composer
-        const composerForm = document.querySelector('.composer-form');
-        if (composerForm) {
-            composerForm.addEventListener('submit', (e) => this.sendMessage(e));
-        }
-
-        const composerInput = document.querySelector('.composer-input');
-        if (composerInput) {
-            composerInput.addEventListener('keydown', (e) => this.handleComposerKeydown(e));
-        }
-
-        // Sidebar
+        // Sidebar close
         const sidebarClose = document.querySelector('.sidebar-close');
         if (sidebarClose) {
             sidebarClose.addEventListener('click', () => this.toggleSidebar());
         }
 
-        const sidebarToggle = document.querySelector('.sidebar-toggle');
-        if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', () => this.toggleSidebar());
-        }
-
-        // Account menu
-        const accountMenuToggle = document.querySelector('.account-menu-toggle');
-        if (accountMenuToggle) {
-            accountMenuToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.toggleAccountMenu();
-            });
-        }
-
-        // Close account menu on outside click
+        // Account menu close on outside click
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.sidebar-footer') && document.querySelector('.account-menu')?.style.display === 'flex') {
                 document.querySelector('.account-menu').style.display = 'none';
@@ -523,13 +565,13 @@ class EMOVA {
             item.innerHTML = `
                 <span class="conversation-title">${this.escapeHtml(conv.title)}</span>
                 <div class="conversation-actions">
-                    <button class="conversation-action-btn" onclick="event.stopPropagation(); app.renameConversation('${conv.id}')" title="Rename">
+                    <button class="conversation-action-btn" data-action="rename-conversation" data-conversation-id="${conv.id}" title="Rename">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                         </svg>
                     </button>
-                    <button class="conversation-action-btn" onclick="event.stopPropagation(); app.deleteConversation('${conv.id}')" title="Delete">
+                    <button class="conversation-action-btn" data-action="delete-conversation" data-conversation-id="${conv.id}" title="Delete">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
                         </svg>
@@ -593,7 +635,7 @@ class EMOVA {
                     <div class="message-text">${this.escapeHtml(msg.content)}</div>
                     ${msg.role === 'assistant' ? `
                         <div class="message-actions">
-                            <button class="message-action-btn" onclick="app.copyMessage('${this.escapeHtml(msg.content)}')" title="Copy">
+                            <button class="message-action-btn" data-action="copy-message" data-content="${this.escapeHtml(msg.content)}" title="Copy">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
                                     <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
@@ -684,7 +726,7 @@ class EMOVA {
                     <div class="message-content">
                         <div class="message-text">${this.escapeHtml(data.assistantMessage)}</div>
                         <div class="message-actions">
-                            <button class="message-action-btn" onclick="app.copyMessage('${this.escapeHtml(data.assistantMessage)}')" title="Copy">
+                            <button class="message-action-btn" data-action="copy-message" data-content="${this.escapeHtml(data.assistantMessage)}" title="Copy">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
                                     <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>

@@ -8,19 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Prevent theme flash on page load -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-            
-            if (theme === 'light') {
-                document.documentElement.classList.add('light-theme');
-            } else {
-                document.documentElement.classList.remove('light-theme');
-            }
-        })();
-    </script>
+    <script src="/js/theme-init.js"></script>
 </head>
 <body>
     <div id="app"></div>
@@ -52,8 +40,8 @@
                     <p class="hero-description">Intelligent conversations powered by Google Gemini. Get instant answers, explore ideas, and unlock your potential with cutting-edge AI technology.</p>
                     
                     <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="app.showSignUp()">Get Started</button>
-                        <button class="btn btn-secondary" onclick="app.showSignIn()">Sign In</button>
+                        <button class="btn btn-primary" data-action="show-signup">Get Started</button>
+                        <button class="btn btn-secondary" data-action="show-signin">Sign In</button>
                     </div>
 
                     <div class="hero-features">
@@ -91,7 +79,7 @@
     <!-- Sign Up Page -->
     <template id="signup-template">
         <div class="auth-container">
-            <button class="back-btn" onclick="app.showLanding()" aria-label="Go back">
+            <button class="back-btn" data-action="show-landing" aria-label="Go back">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
@@ -204,7 +192,7 @@
                 </form>
 
                 <div class="auth-footer">
-                    <p>Already have an account? <button onclick="app.showSignIn()" class="link-btn">Sign in here</button></p>
+                    <p>Already have an account? <button data-action="show-signin" class="link-btn">Sign in here</button></p>
                 </div>
 
                 <div class="theme-toggle-footer">
@@ -224,7 +212,7 @@
     <!-- Sign In Page -->
     <template id="signin-template">
         <div class="auth-container">
-            <button class="back-btn" onclick="app.showLanding()" aria-label="Go back">
+            <button class="back-btn" data-action="show-landing" aria-label="Go back">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
@@ -279,7 +267,7 @@
                     </div>
 
                     <div class="forgot-password-link">
-                        <button type="button" onclick="app.showForgotPassword()" class="link-btn">Forgot password?</button>
+                        <button type="button" data-action="show-forgot-password" class="link-btn">Forgot password?</button>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block">
@@ -291,7 +279,7 @@
                 </form>
 
                 <div class="auth-footer">
-                    <p>Don't have an account? <button onclick="app.showSignUp()" class="link-btn">Sign up here</button></p>
+                    <p>Don't have an account? <button data-action="show-signup" class="link-btn">Sign up here</button></p>
                 </div>
 
                 <div class="theme-toggle-footer">
@@ -311,7 +299,7 @@
     <!-- Forgot Password Page -->
     <template id="forgot-password-template">
         <div class="auth-container">
-            <button class="back-btn" onclick="app.showSignIn()" aria-label="Go back">
+            <button class="back-btn" data-action="show-signin" aria-label="Go back">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
@@ -352,7 +340,7 @@
                 </form>
 
                 <div class="auth-footer">
-                    <p>Remember your password? <button onclick="app.showSignIn()" class="link-btn">Back to sign in</button></p>
+                    <p>Remember your password? <button data-action="show-signin" class="link-btn">Back to sign in</button></p>
                 </div>
 
                 <div class="theme-toggle-footer">
@@ -385,7 +373,7 @@
                     </button>
                 </div>
 
-                <button class="new-chat-btn" onclick="app.createNewChat()">
+                <button class="new-chat-btn" data-action="create-new-chat">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 5v14M5 12h14"/>
                     </svg>
@@ -404,7 +392,7 @@
                 </div>
 
                 <div class="sidebar-footer">
-                    <button class="account-menu-toggle" onclick="app.toggleAccountMenu()" aria-label="Account menu">
+                    <button class="account-menu-toggle" data-action="toggle-account-menu" aria-label="Account menu">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
@@ -422,7 +410,7 @@
                             </svg>
                             <span>Toggle Theme</span>
                         </button>
-                        <button class="sign-out-btn" onclick="app.signOut()">
+                        <button class="sign-out-btn" data-action="sign-out">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
                             </svg>
@@ -438,13 +426,13 @@
                         <h2>Start a New Conversation</h2>
                         <p>Ask me anything and I'll do my best to help</p>
                         <div class="suggested-prompts">
-                            <button class="suggested-prompt" onclick="app.insertPrompt('Explain quantum computing in simple terms')">
+                            <button class="suggested-prompt" data-action="insert-prompt" data-prompt="Explain quantum computing in simple terms">
                                 Explain quantum computing in simple terms
                             </button>
-                            <button class="suggested-prompt" onclick="app.insertPrompt('What are the best productivity tips?')">
+                            <button class="suggested-prompt" data-action="insert-prompt" data-prompt="What are the best productivity tips?">
                                 What are the best productivity tips?
                             </button>
-                            <button class="suggested-prompt" onclick="app.insertPrompt('How do I learn a new programming language?')">
+                            <button class="suggested-prompt" data-action="insert-prompt" data-prompt="How do I learn a new programming language?">
                                 How do I learn a new programming language?
                             </button>
                         </div>
@@ -453,7 +441,7 @@
                 </div>
 
                 <div class="chat-composer">
-                    <form class="composer-form" onsubmit="app.sendMessage(event)">
+                    <form class="composer-form" data-action="send-message">
                         <textarea 
                             class="composer-input" 
                             placeholder="Ask me anything..." 
@@ -471,7 +459,7 @@
             </main>
 
             <!-- Mobile sidebar toggle -->
-            <button class="sidebar-toggle" onclick="app.toggleSidebar()" aria-label="Toggle sidebar">
+            <button class="sidebar-toggle" data-action="toggle-sidebar" aria-label="Toggle sidebar">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
