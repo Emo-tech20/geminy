@@ -4,12 +4,12 @@ import assert from 'node:assert';
 // Test suite for authentication
 test('Authentication Validation', async (t) => {
   await t.test('Email validation - valid email', () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     assert.ok(emailRegex.test('user@example.com'));
   });
 
   await t.test('Email validation - invalid email', () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     assert.ok(!emailRegex.test('invalid-email'));
   });
 
@@ -47,7 +47,7 @@ test('Request Validation', async (t) => {
 
   await t.test('Sign up - email format validation', () => {
     const email = 'test@example.com';
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     assert.ok(emailRegex.test(email));
   });
 

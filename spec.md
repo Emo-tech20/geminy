@@ -1,277 +1,272 @@
-# AI Assistant Web App — Product Specification
+# EMOVA AI — Premium AI Assistant Specification
 
 ## 1. Project Overview
 
-Build a polished, responsive AI assistant web application inspired by the usability of Gemini and other modern AI chat tools. The app must allow users to register, sign in, ask questions, and receive genuine AI-generated answers.
+Build EMOVA AI, a premium multi-model AI assistant inspired by the capabilities of ChatGPT, Google Gemini, Claude and Grok.
 
-**Project name:** Nova AI (use this as a temporary name; keep it easy to rename)
+The application must support real AI conversations, multiple AI providers, image generation, file attachments, document analysis, web research, voice interaction, conversation history and personalisation.
 
-**Core technologies**
-- Frontend: HTML5, CSS3, and vanilla JavaScript (no React, Vue, Angular, or TypeScript).
-- Backend: Node.js with Express.
-- Authentication and persistent data: Supabase Auth and Supabase database, unless the project already has a working equivalent that can safely be reused.
-- AI responses: a real AI provider API called only from the backend.
-- Deployment-ready configuration: environment variables, HTTPS-compatible API calls, and production-safe CORS.
+The application must use real API integrations. Mock responses must never be presented as genuine AI responses.
 
-This is a web application, not a static mockup. Do not fake AI responses or claim that authentication works if it does not.
+## 2. Existing Project Preservation
 
-## 2. Main Goals
+Before making changes:
 
-1. Create a clear, logical sign-up and sign-in experience.
-2. Let authenticated users ask questions and receive actual AI-generated responses.
-3. Keep conversation history for signed-in users.
-4. Provide a modern, accessible, mobile-friendly interface.
-5. Protect passwords, sessions, user data, and AI API credentials.
-6. Include clear setup instructions for running locally and configuring external services.
+- Inspect the entire existing repository.
+- Understand the current frontend and backend architecture.
+- Inspect existing authentication and Supabase integration.
+- Inspect the OpenRouter integration.
+- Inspect the image-generation service and Replicate integration.
+- Inspect existing database migrations and tests.
+- Identify existing bugs and incomplete features.
+- Preserve working functionality.
+- Do not recreate the project unnecessarily.
+- Do not delete existing files without justification.
+- Do not expose API keys in frontend code.
 
-## 3. Pages and Navigation
+## 3. AI Chat System
 
-### A. Welcome / Landing Page
-- Brand mark and app name.
-- Short headline explaining the AI assistant.
-- Brief description of what it can help with.
-- Primary buttons: **Get started** and **Sign in**.
-- Link to privacy information.
-- Responsive layout for mobile, tablet, and desktop.
+Implement:
 
-### B. Sign-Up Page
-Fields:
-- Full name.
-- Email address.
-- Password.
-- Confirm password.
-- Checkbox to accept the Terms and Privacy Policy.
+- Real-time AI conversations.
+- Streaming responses where supported.
+- Conversation history.
+- New conversation creation.
+- Conversation search.
+- Rename, archive and delete conversations.
+- Copy responses.
+- Regenerate responses.
+- Edit user messages.
+- Stop response generation.
+- Markdown rendering.
+- Code syntax highlighting.
+- Code copy buttons.
+- Clear error messages.
+- Loading indicators.
+- Retry failed requests.
 
-Requirements:
-- Validate required fields and email format.
-- Password must meet a documented minimum length (at least 8 characters); show helpful password guidance.
-- Show/hide password controls.
-- Confirm password must match.
-- Do not allow submission until required fields and terms are valid.
-- Show an in-button loading state while submitting.
-- Prevent duplicate submissions while loading.
-- Display useful, accessible field-level errors and a general error message.
-- Show a clear success state. If email confirmation is enabled, tell the user to check their inbox before signing in.
-- Link existing users to Sign In.
-- Never store raw passwords in application tables or browser local storage.
-- Use a trusted authentication provider (Supabase Auth) rather than building custom password storage.
+## 4. Multiple AI Providers
 
-### C. Sign-In Page
-Fields:
-- Email.
-- Password.
-- Show/hide password.
-- Remember-session behavior should follow the authentication provider's secure session handling.
-- Validate fields and show helpful errors without exposing whether an email exists unnecessarily.
-- Loading and disabled states during submission.
-- Link to Sign Up.
-- Include a **Forgot password?** flow using the provider's password-reset functionality.
-- On successful authentication, navigate to the chat page.
+Support:
 
-### D. Main Chat Page (protected)
-Layout:
-- Sidebar with app logo, New Chat button, conversation history, and account menu.
-- Main area with a welcome message and suggested prompts when no messages exist.
-- Message list with visually distinct user and assistant messages.
-- Composer fixed near the bottom, with a multiline text area and Send button.
-- Responsive sidebar that can open/close on mobile.
-- Account menu with profile/email, theme toggle, and Sign Out.
-- Empty, loading, error, and no-history states.
-
-### E. Privacy / Basic Settings
-- Explain that questions are sent to the configured AI provider for processing.
-- Provide a way to delete a conversation.
-- Provide a clear sign-out action.
-- Do not imply that data is private from the AI provider unless the configured provider's actual terms support that claim.
-
-## 4. Chat Functionality
-
-- Users must be authenticated before using chat endpoints.
-- Send a user's question to the Express backend.
-- The backend validates the request and calls the configured AI provider.
-- Display the actual provider response; never return hard-coded sample answers as if they were generated by AI.
-- Show an animated typing/loading indicator while waiting.
-- Disable duplicate sends while a request is pending, but allow cancellation or a clear way to recover from a slow request.
-- Support Enter to send and Shift+Enter for a new line.
-- Trim whitespace and reject empty messages.
-- Set a sensible maximum message length and return a clear validation error when exceeded.
-- Provide Retry after a failed response.
-- Add Copy Answer controls to assistant messages.
-- Render plain text safely by default. If Markdown is supported, use a maintained sanitizer and never insert unsanitized model output with `innerHTML`.
-- Keep the conversation context when sending follow-up questions, with a reasonable context/message limit.
-- Display a friendly, non-technical error if the AI service is unavailable, rate-limited, or returns an error.
-- Do not expose raw stack traces, provider credentials, or internal server details to users.
-
-## 5. Conversation History
-
-- Save conversations and messages to the persistent database for the authenticated user.
-- Each conversation has an ID, title, creation time, and updated time.
-- Automatically create a conversation on the first message.
-- Generate a simple title from the first user question (truncate safely); allow renaming.
-- List recent conversations in the sidebar, newest first.
-- Clicking a conversation loads its messages.
-- Allow deleting a conversation after a confirmation step.
-- Enforce ownership on the server/database: a user must never read, rename, or delete another user's conversations.
-- Handle an empty history and database/network errors gracefully.
-- Do not use browser local storage as the sole source of truth for accounts or persistent conversation history.
-
-## 6. AI Provider and Backend
-
-Create a provider adapter so the AI provider can be configured without rewriting the chat UI.
-
-Environment variables (names may be adjusted consistently and documented):
-- `PORT`
-- `CLIENT_URL`
-- `AI_API_KEY`
-- `AI_API_BASE_URL` (if the selected provider supports/configures a base URL)
-- `AI_MODEL`
-- `SUPABASE_URL`
-- `SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY` only if server-side administration is genuinely needed; never expose this to the frontend.
+- OpenAI GPT.
+- Google Gemini.
+- Anthropic Claude.
+- xAI Grok.
 
 Requirements:
-- All AI calls happen on the server. Never put `AI_API_KEY` in frontend JavaScript, HTML, CSS, a public environment variable, or a committed file.
-- Use environment variables and include `.env.example` with placeholder values only.
-- Ensure `.env` is ignored by Git.
-- If credentials or provider configuration are missing, show a setup error in development and return a safe, actionable message from the API. Do not silently fake an AI answer.
-- Set request timeouts and sensible input/context limits.
-- Handle provider errors and rate limits safely.
-- Add basic per-user/IP rate limiting to the AI endpoint.
-- Validate all request bodies and use security middleware such as Helmet.
-- Configure CORS for the intended frontend origin via `CLIENT_URL`; do not allow every origin by default in production.
-- Use `process.env.PORT` for hosting compatibility.
-- Do not log passwords, tokens, full secrets, or sensitive conversation content unnecessarily.
 
-## 7. Authentication and Authorization
+- Create a provider abstraction layer.
+- Support provider-specific model identifiers.
+- Allow users to select available models.
+- Display the active model.
+- Support provider-specific API credentials through secure environment variables.
+- Use OpenRouter as an optional unified provider.
+- Validate provider configuration.
+- Handle rate limits, unavailable models, timeouts and API errors.
+- Never silently replace one model with another.
+- Never return fabricated responses when a provider fails.
 
-- Use Supabase Auth for sign-up, sign-in, sign-out, and password reset, unless a working secure authentication system already exists in the project.
-- The backend must verify the signed-in user's access token before serving protected chat routes.
-- Do not trust a user ID supplied in the request body as proof of identity.
-- Apply ownership checks or database Row Level Security policies to all conversation and message operations.
-- Never add an authentication bypass, default admin account, hard-coded password, or backdoor.
-- Do not store passwords in plain text or implement homemade password hashing when a trusted auth provider is available.
-- Avoid revealing whether a specific email is registered in public error messages.
-- Keep authentication errors user-friendly and avoid leaking internal details.
+Each provider must be independently tested using real API requests before being marked operational.
 
-## 8. Suggested Data Model
+## 5. Image Generation
 
-Use migrations or documented SQL for these tables, adapting names to the chosen implementation:
+Implement genuine AI image generation using Replicate.
 
-### `conversations`
-- `id`: UUID primary key.
-- `user_id`: authenticated user's ID; foreign key to the auth user.
-- `title`: text, required, reasonable length limit.
-- `created_at`: timestamp.
-- `updated_at`: timestamp.
+Requirements:
 
-### `messages`
-- `id`: UUID primary key.
-- `conversation_id`: foreign key to conversations.
-- `user_id`: authenticated user's ID for clear ownership validation.
-- `role`: constrained to `user` or `assistant`.
-- `content`: text, required, with a reasonable length limit.
-- `created_at`: timestamp.
+- Text-to-image generation.
+- Prompt input.
+- Image dimensions and aspect ratios.
+- Supported image styles.
+- Generation progress indicators.
+- Generated image preview.
+- Download generated image.
+- Regenerate image.
+- Image history.
+- Save generated image records to Supabase.
+- User-specific image history.
+- Proper provider error handling.
+- Poll asynchronous image-generation jobs until completion.
 
-Add indexes for owner and conversation lookups. Enable and test Row Level Security so users can only access their own records. Provide SQL/migration instructions. Do not store AI API keys in the database.
+Do not return placeholder SVGs or fake generated images as successful results.
 
-## 9. Design System
+## 6. File Attachments
 
-Visual direction:
-- Modern, clean, premium AI product.
-- Default dark theme: charcoal/near-black background, readable off-white text, and a restrained electric-orange accent.
-- Light theme should also be supported.
-- Use Space Grotesk for headings and a legible system sans-serif fallback for body text.
-- Rounded cards and input surfaces, subtle borders, restrained glow effects, consistent spacing, and polished hover/focus states.
-- Avoid excessive gradients, clutter, and oversized empty spaces.
-- Use inline SVG icons or accessible icon markup; avoid emoji as the main interface icons.
-- Add skeleton/loading indicators and thoughtful empty states.
-- Make the design original; do not copy Gemini's exact logo or branding.
+Support uploading:
 
-Responsive behavior:
-- Mobile-first CSS.
-- Sidebar collapses into a drawer on small screens.
-- Composer and messages fit narrow screens without horizontal overflow.
-- Buttons and form controls have comfortable touch targets.
+- PDF
+- DOC
+- DOCX
+- TXT
+- CSV
+- XLS
+- XLSX
+- PPT
+- PPTX
+- PNG
+- JPG
+- JPEG
+- WEBP
 
-Accessibility:
-- Semantic HTML.
-- Proper labels for every form field.
-- Keyboard navigation and visible focus indicators.
-- Sufficient color contrast.
-- ARIA live region for chat status/new responses where appropriate.
-- Errors should be associated with their relevant fields.
-- Respect reduced-motion preferences.
+Requirements:
 
-## 10. Security and Reliability
+- Attachment button beside the message input.
+- Drag-and-drop uploads.
+- Multiple file uploads.
+- File previews.
+- File removal before sending.
+- File size validation.
+- File type validation.
+- Upload progress.
+- Secure file storage.
+- User-specific file access.
+- File processing status.
+- Clear upload errors.
 
-- Keep secrets out of source control and browser bundles.
-- Validate and sanitize all user-controlled input.
-- Use secure session/token handling provided by the auth SDK.
-- Use Helmet and production-appropriate CORS.
-- Add rate limiting to sign-in/sign-up if implemented on the server, and to AI requests.
-- Add request-size limits and provider timeouts.
-- Do not render user or AI content as trusted HTML.
-- Use parameterized database operations / official SDK methods.
-- Handle expired sessions by prompting the user to sign in again.
-- Ensure users cannot access other users' data by changing IDs in requests.
-- Never claim production security has been verified unless it has actually been tested.
+## 7. Document Analysis
 
-## 11. Testing and Acceptance Criteria
+Users must be able to:
 
-The implementation is complete only when the following have been checked:
+- Ask questions about uploaded documents.
+- Summarise documents.
+- Extract important information.
+- Explain difficult sections.
+- Compare multiple documents.
+- Extract tables.
+- Analyse spreadsheets.
+- Generate insights from CSV and Excel files.
+- Reference uploaded documents in conversations.
 
-### Authentication
-- Valid registration succeeds.
-- Invalid email, missing fields, short password, mismatched passwords, and unaccepted terms are rejected client-side with clear messages.
-- Authentication provider errors are displayed gracefully.
-- Existing users can sign in and sign out.
-- Password reset flow is wired to the auth provider.
-- Unauthenticated users cannot access protected chat routes or APIs.
+Use suitable document parsers and extraction services. Do not send unsupported raw binary files directly to text-only AI models.
 
-### AI Chat
-- A valid question reaches the backend and configured AI provider.
-- A real provider answer is displayed.
-- Missing API configuration produces a clear setup error, not a fake response.
-- Empty messages are rejected.
-- Loading, failure, timeout, retry, and rate-limit states work.
-- Enter sends; Shift+Enter inserts a newline.
-- Copy Answer works.
+## 8. Web Search and Research
 
-### History and data protection
-- Conversations persist after refresh and re-login.
-- Users can load, rename, and delete their own conversations.
-- User A cannot access User B's conversations or messages.
-- Database access policies are documented and tested.
+Implement:
 
-### UI and quality
-- All navigation and buttons work.
-- Layout works on desktop, tablet, and mobile.
-- Dark/light theme works and persists appropriately.
-- No obvious console errors, broken links, or horizontal overflow.
-- Form controls are keyboard accessible.
-- Automated tests are added for important backend validation, authorization, and API error paths where practical.
+- Search the web for current information.
+- Display source links.
+- Provide citations.
+- Summarise search results.
+- Research mode.
+- Distinguish sourced information from AI-generated explanations.
+- Handle search-provider errors.
 
-## 12. Deliverables
+## 9. Voice Features
 
-- Working frontend in HTML, CSS, and vanilla JavaScript.
-- Express backend with secure AI API integration.
-- Supabase authentication and persistent conversation storage, or a documented equivalent already present in the project.
-- SQL/migrations and Row Level Security policies.
-- `.env.example` containing placeholders only.
-- `.gitignore` protecting `.env`, secrets, dependencies, and build artifacts.
-- `README.md` with beginner-friendly setup steps, provider configuration, local run instructions, testing, and deployment notes.
-- Tests for key flows.
-- No committed secrets.
-- No fake AI answers.
-- Do not deploy, commit, or push unless explicitly asked.
+Implement:
 
-## 13. Implementation Approach
+- Speech-to-text input.
+- Text-to-speech responses.
+- Microphone permission handling.
+- Play and pause audio.
+- Stop speech playback.
+- Voice interaction mode where supported.
 
-1. Inspect the current workspace and report what exists before editing.
-2. Preserve useful existing code and avoid unrelated changes.
-3. Create a short implementation plan and then implement the complete app.
-4. Build authentication and secure backend/API foundations before connecting the chat UI.
-5. Add persistence, loading/error states, responsive styling, and tests.
-6. Run available tests and build/lint checks; fix issues caused by the implementation.
-7. Report completed features, files changed, tests run and their results, environment variables the user must configure, and any remaining manual setup.
-8. If external credentials are not available, finish the integration code and clearly identify the exact setup needed. Do not pretend to have tested a live AI response.
+## 10. Memory and Personalisation
+
+Implement:
+
+- User-controlled memory.
+- Custom instructions.
+- Remember useful preferences.
+- Review and manage stored information.
+- Delete individual memory entries.
+- Project-specific context.
+- Respect user privacy and permissions.
+
+## 11. Projects and Workspaces
+
+Implement:
+
+- Create projects.
+- Rename projects.
+- Delete projects.
+- Add project instructions.
+- Attach project files.
+- Maintain project-specific conversations.
+- Search project conversations.
+
+## 12. User Interface
+
+Create a polished, responsive interface with:
+
+- Sidebar navigation.
+- New chat button.
+- Conversation history.
+- Model selector.
+- Attachment button.
+- Image-generation interface.
+- Voice controls.
+- Search controls.
+- User profile and settings.
+- Light and dark themes.
+- Responsive mobile layout.
+- Accessible controls.
+- Clear loading, empty and error states.
+
+Maintain EMOVA AI's existing branding where possible.
+
+## 13. Security
+
+- Keep provider API keys on the backend.
+- Use authentication middleware.
+- Validate uploaded files.
+- Enforce upload size limits.
+- Protect file access.
+- Apply Supabase Row Level Security.
+- Validate user ownership of conversations and files.
+- Apply rate limits.
+- Sanitize user input.
+- Avoid exposing service-role credentials.
+- Never log secrets or full API keys.
+
+## 14. Testing and Verification
+
+Create tests for:
+
+- Authentication.
+- Chat requests.
+- Every configured AI provider.
+- Model selection.
+- Streaming responses.
+- Image generation.
+- Image-generation polling.
+- File uploads.
+- Document parsing.
+- Document analysis.
+- Web search.
+- Conversation history.
+- User permissions.
+- Error handling.
+
+Distinguish mocked tests from real integration tests.
+
+A feature is not complete merely because mocked tests pass.
+
+## 15. Implementation Rules
+
+- Inspect before editing.
+- Implement incrementally.
+- Preserve working functionality.
+- Avoid unnecessary dependencies.
+- Keep code modular and maintainable.
+- Update database migrations when necessary.
+- Update `.env.example` with placeholder names only.
+- Never write real credentials into source files.
+- Do not deploy or push to GitHub without explicit permission.
+
+## 16. Definition of Done
+
+EMOVA AI is ready only when:
+
+1. Real AI chat works.
+2. GPT, Gemini, Claude and Grok work when configured.
+3. Image generation returns genuine generated images.
+4. Attachments upload successfully.
+5. Supported documents can be analysed.
+6. Conversation history persists.
+7. User permissions are enforced.
+8. Errors are handled honestly.
+9. The application works on desktop and mobile.
+10. Real integration tests verify the critical workflows.

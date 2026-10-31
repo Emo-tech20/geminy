@@ -1,41 +1,54 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">EMOVA AI emblem</title>
   <defs>
-    <linearGradient id="sparkleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#4ECDC4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1E90FF;stop-opacity:1" />
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f6f8"/>
+      <stop offset=".3" stop-color="#b9c0c7"/>
+      <stop offset=".52" stop-color="#5d646b"/>
+      <stop offset=".62" stop-color="#2a2f35"/>
+      <stop offset=".8" stop-color="#9aa2aa"/>
+      <stop offset="1" stop-color="#e7eaed"/>
     </linearGradient>
-    <linearGradient id="sparkleGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#6BCB77;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b3036"/>
+      <stop offset="1" stop-color="#07090b"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+    <radialGradient id="core">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".35" stop-color="#ffe2c2"/>
+      <stop offset=".72" stop-color="#ff861f" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ff6a00" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  
-  <!-- Main sparkle shape - four-pointed star -->
-  <path d="M100,10 L130,80 L200,100 L130,120 L100,190 L70,120 L0,100 L70,80 Z" 
-        fill="url(#sparkleGradient1)" 
-        filter="url(#glow)"
-        opacity="0.95"/>
-  
-  <!-- Secondary sparkle layer for depth -->
-  <path d="M100,30 L120,80 L170,100 L120,120 L100,170 L80,120 L30,100 L80,80 Z" 
-        fill="url(#sparkleGradient2)" 
-        opacity="0.7"/>
-  
-  <!-- Center glow circle -->
-  <circle cx="100" cy="100" r="25" 
-          fill="#FFFFFF" 
-          opacity="0.3"
-          filter="url(#glow)"/>
-  
-  <!-- Accent points for extra sparkle -->
-  <circle cx="100" cy="100" r="8" fill="#FFFFFF" opacity="0.8"/>
+  <rect width="96" height="96" rx="22" fill="#07090c"/>
+  <g transform="translate(-4,0) scale(.62)">
+    <g transform="translate(6,7)" fill="url(#side)">
+      <path d="M50 30H160L138 56H78V130H138L160 156H50Z"/>
+    </g>
+    <path d="M50 30H160L138 56H78V80H126L110 106H78V130H138L160 156H50Z" fill="url(#chrome)"/>
+    <path d="M52 32H157M52 32V154" stroke="#fff" stroke-opacity=".75" stroke-width="1.2" fill="none"/>
+    <path d="M78 56H138M78 130H138" stroke="#fff" stroke-opacity=".35" stroke-width="1" fill="none"/>
+    <path d="M50 93L64 80V106Z" fill="#07090c" opacity=".9"/>
+    <g stroke="#ff9a43" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".92">
+      <path d="M104 93L138 43M104 93L138 143M104 93L150 93"/>
+      <path d="M138 43L150 93L138 143" stroke-opacity=".58"/>
+      <path d="M104 93L84 68M104 93L84 118" stroke-opacity=".58"/>
+    </g>
+    <g fill="#ffd7b0" filter="url(#glow)">
+      <circle cx="138" cy="43" r="2.6"/>
+      <circle cx="138" cy="143" r="2.6"/>
+      <circle cx="150" cy="93" r="2.6"/>
+      <circle cx="84" cy="68" r="2"/>
+      <circle cx="84" cy="118" r="2"/>
+    </g>
+    <circle cx="104" cy="93" r="20" fill="url(#core)"/>
+    <circle cx="104" cy="93" r="5" fill="#fff" filter="url(#glow)"/>
+  </g>
 </svg>

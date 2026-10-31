@@ -6,7 +6,7 @@
     <title>EMOVA AI - Your Intelligent Assistant</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Prevent theme flash on page load -->
     <script src="/js/theme-init.js"></script>
 </head>
@@ -38,7 +38,7 @@
                     <h1>Your AI Assistant, Elevated</h1>
                     <p class="hero-subtitle">Meet EMOVA AI</p>
                     <p class="hero-description">Intelligent conversations powered by Google Gemini. Get instant answers, explore ideas, and unlock your potential with cutting-edge AI technology.</p>
-                    
+
                     <div class="hero-buttons">
                         <button class="btn btn-primary" data-action="show-signup">Get Started</button>
                         <button class="btn btn-secondary" data-action="show-signin">Sign In</button>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="/images/emova-logo.svg" alt="EMOVA AI" class="hero-logo">
+                    <img src="/images/emova-logo-lockup.svg" alt="EMOVA AI" class="hero-logo">
                 </div>
             </div>
 
@@ -99,10 +99,10 @@
 
                     <div class="form-group">
                         <label for="signup-fullname">Full Name</label>
-                        <input 
-                            type="text" 
-                            id="signup-fullname" 
-                            name="fullName" 
+                        <input
+                            type="text"
+                            id="signup-fullname"
+                            name="fullName"
                             placeholder="John Doe"
                             required
                             autocomplete="name"
@@ -112,10 +112,10 @@
 
                     <div class="form-group">
                         <label for="signup-email">Email</label>
-                        <input 
-                            type="email" 
-                            id="signup-email" 
-                            name="email" 
+                        <input
+                            type="text"
+                            id="signup-email"
+                            name="email"
                             placeholder="you@example.com"
                             required
                             autocomplete="email"
@@ -126,10 +126,10 @@
                     <div class="form-group">
                         <label for="signup-password">Password</label>
                         <div class="password-input-wrapper">
-                            <input 
-                                type="password" 
-                                id="signup-password" 
-                                name="password" 
+                            <input
+                                type="password"
+                                id="signup-password"
+                                name="password"
                                 placeholder="At least 8 characters"
                                 required
                                 autocomplete="new-password"
@@ -152,10 +152,10 @@
                     <div class="form-group">
                         <label for="signup-confirm">Confirm Password</label>
                         <div class="password-input-wrapper">
-                            <input 
-                                type="password" 
-                                id="signup-confirm" 
-                                name="confirmPassword" 
+                            <input
+                                type="password"
+                                id="signup-confirm"
+                                name="confirmPassword"
                                 placeholder="Confirm your password"
                                 required
                                 autocomplete="new-password"
@@ -173,10 +173,10 @@
                     </div>
 
                     <div class="form-group checkbox">
-                        <input 
-                            type="checkbox" 
-                            id="signup-terms" 
-                            name="terms" 
+                        <input
+                            type="checkbox"
+                            id="signup-terms"
+                            name="terms"
                             required
                         >
                         <label for="signup-terms">I agree to the Terms and Privacy Policy</label>
@@ -232,10 +232,10 @@
 
                     <div class="form-group">
                         <label for="signin-email">Email</label>
-                        <input 
-                            type="email" 
-                            id="signin-email" 
-                            name="email" 
+                        <input
+                            type="text"
+                            id="signin-email"
+                            name="email"
                             placeholder="you@example.com"
                             required
                             autocomplete="email"
@@ -246,10 +246,10 @@
                     <div class="form-group">
                         <label for="signin-password">Password</label>
                         <div class="password-input-wrapper">
-                            <input 
-                                type="password" 
-                                id="signin-password" 
-                                name="password" 
+                            <input
+                                type="password"
+                                id="signin-password"
+                                name="password"
                                 placeholder="Your password"
                                 required
                                 autocomplete="current-password"
@@ -320,10 +320,10 @@
 
                     <div class="form-group">
                         <label for="forgot-email">Email</label>
-                        <input 
-                            type="email" 
-                            id="forgot-email" 
-                            name="email" 
+                        <input
+                            type="text"
+                            id="forgot-email"
+                            name="email"
                             placeholder="you@example.com"
                             required
                             autocomplete="email"
@@ -380,6 +380,14 @@
                     New Chat
                 </button>
 
+                <button class="settings-nav-button" data-action="show-settings" aria-current="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 2.94-.08-.02a1.7 1.7 0 0 0-1.75.64l-.05.07h-3.4l-.05-.07a1.7 1.7 0 0 0-1.75-.64l-.08.02-1.7-2.94.06-.06A1.7 1.7 0 0 0 9.6 15l-.08-.03v-3.4l.08-.03a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-2.94.08.02a1.7 1.7 0 0 0 1.75-.64l.05-.07h3.4l.05.07a1.7 1.7 0 0 0 1.75.64l.08-.02 1.7 2.94-.06.06A1.7 1.7 0 0 0 19.4 12l.08.03v3.4z" transform="translate(-2 -2)"/>
+                    </svg>
+                    <span>Settings</span>
+                </button>
+
                 <div class="conversations-list">
                     <div class="conversations-empty" style="display: none;">
                         <p>No conversations yet</p>
@@ -401,6 +409,13 @@
                     </button>
 
                     <div class="account-menu" style="display: none;">
+                        <button data-action="show-settings">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 2.94-.08-.02a1.7 1.7 0 0 0-1.75.64l-.05.07h-3.4l-.05-.07a1.7 1.7 0 0 0-1.75-.64l-.08.02-1.7-2.94.06-.06A1.7 1.7 0 0 0 9.6 15l-.08-.03v-3.4l.08-.03a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.7-2.94.08.02a1.7 1.7 0 0 0 1.75-.64l.05-.07h3.4l.05.07a1.7 1.7 0 0 0 1.75.64l.08-.02 1.7 2.94-.06.06A1.7 1.7 0 0 0 19.4 12l.08.03v3.4z" transform="translate(-2 -2)"/>
+                            </svg>
+                            Settings & profile
+                        </button>
                         <button class="theme-toggle-chat" aria-label="Toggle theme">
                             <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
@@ -421,6 +436,17 @@
             </aside>
 
             <main class="chat-main">
+                <header class="chat-heading-bar chat-toolbar">
+                    <h1>Chat</h1>
+                </header>
+                <div class="chat-model-toolbar">
+                    <label for="model-selector">AI model</label>
+                    <select id="model-selector" class="model-selector" aria-describedby="model-status">
+                        <option value="">Loading available models…</option>
+                    </select>
+                    <span class="active-model-label" aria-live="polite">Choose a model to start</span>
+                    <span id="model-status" class="model-status" role="status"></span>
+                </div>
                 <div class="messages-container">
                     <div class="messages-empty">
                         <h2>Start a New Conversation</h2>
@@ -441,13 +467,31 @@
                 </div>
 
                 <div class="chat-composer">
+                    <div class="chat-status" role="status" aria-live="polite" hidden></div>
                     <form class="composer-form" data-action="send-message">
-                        <textarea 
-                            class="composer-input" 
-                            placeholder="Ask me anything..." 
+                        <textarea
+                            class="composer-input"
+                            placeholder="Ask me anything..."
                             rows="1"
                             aria-label="Message input"
                         ></textarea>
+                        <button type="button" class="composer-button image-gen-button" data-action="show-image-prompt" aria-label="Generate image" title="Generate image">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="composer-button voice-input-button" data-voice-action="record" aria-label="Start voice input" title="Start voice input">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <rect x="9" y="2" width="6" height="12" rx="3"></rect>
+                                <path d="M5 10a7 7 0 0 0 14 0M12 17v5m-4 0h8"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="composer-cancel voice-cancel-button" data-voice-action="cancel-recording" aria-label="Cancel voice recording" hidden>
+                            Cancel
+                        </button>
+                        <button type="button" class="composer-cancel" data-chat-action="stop-response" aria-label="Stop response" title="Stop response" hidden>
+                            Stop
+                        </button>
                         <button type="submit" class="composer-button" aria-label="Send message">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.40214477,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.9702544,11.6889879 22.9702544,11.6889879 22.9702544,11.6889879 L4.13399899,1.16151313 C3.34915502,0.9 2.40214477,0.9 1.77946707,1.4429026 C0.994623095,2.0742751 0.837654326,3.33948917 1.15159189,4.12498602 L3.03521743,10.5659791 C3.03521743,10.7230765 3.19218622,10.8801738 3.50612381,10.8801738 L16.6915026,11.5115463 C16.6915026,11.5115463 17.1624089,11.5115463 17.1624089,12.0064027 C17.1624089,12.5012591 17.1624089,12.4744748 16.6915026,12.4744748 Z"/>
@@ -455,6 +499,7 @@
                         </button>
                     </form>
                     <p class="composer-hint">Enter to send, Shift+Enter for new line</p>
+                    <p class="voice-status" role="status" aria-live="polite"></p>
                 </div>
             </main>
 
@@ -467,6 +512,180 @@
         </div>
     </template>
 
-    <script src="/js/app.js"></script>
+    <template id="settings-template">
+        <main class="settings-page">
+            <header class="settings-topbar">
+                <div class="settings-brand">
+                    <img src="/images/emova-logo.svg" alt="" class="settings-brand-logo">
+                    <span>EMOVA AI</span>
+                </div>
+                <span class="settings-current-nav" aria-current="page">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15l.1.1-1.6 2.8-.2-.1a1.8 1.8 0 0 0-1.8.7l-.1.2h-3.3l-.1-.2a1.8 1.8 0 0 0-1.8-.7l-.2.1-1.6-2.8.1-.1a1.8 1.8 0 0 0 .4-1.9l-.2-.1v-3.2l.2-.1a1.8 1.8 0 0 0-.4-1.9l-.1-.1 1.6-2.8.2.1a1.8 1.8 0 0 0 1.8-.7l.1-.2h3.3l.1.2a1.8 1.8 0 0 0 1.8.7l.2-.1 1.6 2.8-.1.1a1.8 1.8 0 0 0-.4 1.9l.2.1V13l-.2.1a1.8 1.8 0 0 0 .4 1.9z"/>
+                    </svg>
+                    <span>Settings</span>
+                </span>
+                <button class="btn btn-secondary settings-back-button" data-action="show-chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to chat
+                </button>
+            </header>
+
+            <section class="settings-content">
+                <div class="settings-heading">
+                    <p class="settings-eyebrow">YOUR ACCOUNT</p>
+                    <h1>Settings</h1>
+                    <p>Manage your profile, security, and appearance.</p>
+                </div>
+                <div id="settings-page-status" class="settings-notice" role="status" aria-live="polite" hidden></div>
+
+                <section class="settings-card" aria-labelledby="profile-heading">
+                    <div class="settings-card-heading">
+                        <div>
+                            <h2 id="profile-heading">Profile</h2>
+                            <p>Your public identity across EMOVA AI.</p>
+                        </div>
+                    </div>
+                    <form id="profile-settings-form">
+                        <div class="profile-avatar-row">
+                            <img id="profile-avatar-preview" class="profile-avatar" src="/images/emova-logo.svg" alt="Profile picture preview">
+                            <div>
+                                <strong>Profile picture</strong>
+                                <p>JPEG, PNG, or WebP · up to 5 MB</p>
+                                <div class="profile-avatar-actions">
+                                    <label class="btn btn-secondary avatar-upload-label" for="profile-avatar-file">Choose image</label>
+                                    <input id="profile-avatar-file" class="visually-hidden" type="file" accept="image/jpeg,image/png,image/webp">
+                                    <button type="button" class="link-btn" data-action="remove-profile-avatar">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-display-name">Display name</label>
+                            <input id="profile-display-name" name="displayName" type="text" maxlength="80" autocomplete="name" required>
+                        </div>
+                        <div class="settings-profile-meta">
+                            <div>
+                                <span class="settings-field-label">Email</span>
+                                <span id="profile-current-email">Loading…</span>
+                            </div>
+                            <div>
+                                <span class="settings-field-label">Member since</span>
+                                <span id="profile-created-at">—</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary settings-submit">Save profile</button>
+                    </form>
+                    <div id="profile-settings-message" class="settings-inline-message" role="status" aria-live="polite"></div>
+                </section>
+
+                <section class="settings-card" aria-labelledby="email-heading">
+                    <div class="settings-card-heading">
+                        <div>
+                            <h2 id="email-heading">Email address</h2>
+                            <p>Changes take effect after verification.</p>
+                        </div>
+                    </div>
+                    <form id="email-settings-form">
+                        <div class="form-group">
+                            <label for="email-current">Current email</label>
+                            <input id="email-current" type="email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-new">New email</label>
+                            <input id="email-new" name="email" type="email" autocomplete="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary settings-submit">Send verification email</button>
+                    </form>
+                    <div id="email-settings-message" class="settings-inline-message" role="status" aria-live="polite"></div>
+                </section>
+
+                <section class="settings-card" aria-labelledby="password-heading">
+                    <div class="settings-card-heading">
+                        <div>
+                            <h2 id="password-heading">Password & security</h2>
+                            <p>Keep your account protected with a strong password.</p>
+                        </div>
+                    </div>
+                    <form id="password-settings-form">
+                        <div class="form-group">
+                            <label for="password-new">New password</label>
+                            <input id="password-new" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password-confirm">Confirm new password</label>
+                            <input id="password-confirm" name="confirmPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+                        </div>
+                        <div class="settings-button-row">
+                            <button type="submit" class="btn btn-primary">Update password</button>
+                            <button type="button" class="btn btn-secondary" data-action="request-password-reset">Email me a reset link</button>
+                        </div>
+                    </form>
+                    <div id="password-settings-message" class="settings-inline-message" role="status" aria-live="polite"></div>
+                </section>
+
+                <section class="settings-card" aria-labelledby="appearance-heading">
+                    <div class="settings-card-heading">
+                        <div>
+                            <h2 id="appearance-heading">Appearance</h2>
+                            <p>Choose the theme used across this device.</p>
+                        </div>
+                    </div>
+                    <div class="settings-theme-options" role="group" aria-label="Color theme">
+                        <button type="button" class="settings-theme-option" data-action="set-theme" data-theme-value="dark">
+                            <span class="theme-preview theme-preview-dark" aria-hidden="true"></span>
+                            <span>Dark</span>
+                        </button>
+                        <button type="button" class="settings-theme-option" data-action="set-theme" data-theme-value="light">
+                            <span class="theme-preview theme-preview-light" aria-hidden="true"></span>
+                            <span>Light</span>
+                        </button>
+                    </div>
+                    <div id="appearance-settings-message" class="settings-inline-message" role="status" aria-live="polite"></div>
+                </section>
+
+                <section class="settings-card settings-danger-card" aria-labelledby="session-heading">
+                    <div class="settings-card-heading">
+                        <div>
+                            <h2 id="session-heading">Session</h2>
+                            <p>Sign out of EMOVA AI on this device.</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary settings-signout" data-action="sign-out">Sign out</button>
+                </section>
+            </section>
+        </main>
+    </template>
+
+    <template id="reset-password-template">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo"><img src="/images/emova-logo.svg" alt="EMOVA AI Logo" class="auth-logo-img"></div>
+                    <h1>Choose a new password</h1>
+                    <p>Use at least 8 characters.</p>
+                </div>
+                <form id="reset-password-form" class="auth-form">
+                    <div class="form-error" style="display:none"></div>
+                    <div class="form-success" style="display:none"></div>
+                    <div class="form-group">
+                        <label for="reset-new-password">New password</label>
+                        <input id="reset-new-password" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="reset-confirm-password">Confirm new password</label>
+                        <input id="reset-confirm-password" name="confirmPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+                        <span class="field-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><span class="btn-text">Update password</span></button>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="/js/app.js"></script>
 </body>
 </html>

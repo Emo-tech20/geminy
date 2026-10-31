@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-labelledby="title description">
+  <title id="title">EMOVA AI</title>
+  <desc id="description">A polished chrome E emblem with orange neural links and a glowing core above the EMOVA AI wordmark.</desc>
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f6f8"/>
+      <stop offset=".3" stop-color="#b9c0c7"/>
+      <stop offset=".52" stop-color="#5d646b"/>
+      <stop offset=".62" stop-color="#2a2f35"/>
+      <stop offset=".8" stop-color="#9aa2aa"/>
+      <stop offset="1" stop-color="#e7eaed"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b3036"/>
+      <stop offset="1" stop-color="#07090b"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".45" stop-color="#b4bbc2"/>
+      <stop offset=".55" stop-color="#6b727a"/>
+      <stop offset="1" stop-color="#d9dde1"/>
+    </linearGradient>
+    <radialGradient id="core">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".35" stop-color="#ffe2c2"/>
+      <stop offset=".72" stop-color="#ff861f" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ff6a00" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="floor">
+      <stop offset="0" stop-color="#ff7918" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ff7918" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="280" cy="262" rx="150" ry="22" fill="url(#floor)"/>
+  <g transform="translate(140,10) scale(1.4)">
+    <g transform="translate(6,7)" fill="url(#side)">
+      <path d="M50 30H160L138 56H78V130H138L160 156H50Z"/>
+    </g>
+    <path d="M50 30H160L138 56H78V80H126L110 106H78V130H138L160 156H50Z" fill="url(#chrome)"/>
+    <path d="M52 32H157M52 32V154" stroke="#fff" stroke-opacity=".75" stroke-width="1.2" fill="none"/>
+    <path d="M78 56H138M78 130H138" stroke="#fff" stroke-opacity=".35" stroke-width="1" fill="none"/>
+    <path d="M50 93L64 80V106Z" fill="#050608" opacity=".9"/>
+    <g stroke="#ff9a43" stroke-width="1" fill="none" stroke-linecap="round" filter="url(#glow)" opacity=".9">
+      <path d="M104 93L138 43M104 93L138 143M104 93L150 93"/>
+      <path d="M138 43L150 93L138 143" stroke-opacity=".55"/>
+      <path d="M104 93L84 68M104 93L84 118" stroke-opacity=".55"/>
+    </g>
+    <g fill="#ffd7b0" filter="url(#glow)">
+      <circle cx="138" cy="43" r="2.6"/>
+      <circle cx="138" cy="143" r="2.6"/>
+      <circle cx="150" cy="93" r="2.6"/>
+      <circle cx="84" cy="68" r="2"/>
+      <circle cx="84" cy="118" r="2"/>
+    </g>
+    <circle cx="104" cy="93" r="20" fill="url(#core)"/>
+    <circle cx="104" cy="93" r="5" fill="#fff" filter="url(#glow)"/>
+  </g>
+  <text x="280" y="408" text-anchor="middle" font-family="Space Grotesk,Arial,sans-serif" font-weight="900" font-size="84" letter-spacing="6" fill="#000" opacity=".6" transform="translate(3,4)">EMOVA</text>
+  <text x="280" y="408" text-anchor="middle" font-family="Space Grotesk,Arial,sans-serif" font-weight="900" font-size="84" letter-spacing="6" fill="url(#word)">EMOVA</text>
+  <g filter="url(#glow)">
+    <path d="M86 452H222M338 452H474" stroke="#ff9a43" stroke-width="1.5" stroke-opacity=".7"/>
+    <text x="280" y="462" text-anchor="middle" font-family="Space Grotesk,Arial,sans-serif" font-weight="800" font-size="34" letter-spacing="14" fill="#ffae6a">AI</text>
+  </g>
+</svg>

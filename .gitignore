@@ -12,4 +12,3 @@ build/
 *.swo
 *~
 .cache/
-package-lock.json

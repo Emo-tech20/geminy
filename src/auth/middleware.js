@@ -20,6 +20,7 @@ export async function verifyAuth(req, res, next) {
     }
 
     req.user = user;
+    req.accessToken = token;
     next();
   } catch (error) {
     console.error('Auth verification error:', error.message);
